@@ -27,15 +27,17 @@ from haystack.nodes import PromptNode
 from haystack.agents.memory import ConversationSummaryMemory
 from haystack.agents.conversational import ConversationalAgent
 
-def Agent(model_uri=None, model_api_key=None, memory=summary_memory):
+def Agent(model_uri, model_api_key, **model_kwargs):
 
     prompt_node = PromptNode(
-        model_name_or_path=model_uri,
-        api_key=model_api_key,
-        max_length=256,
-        stop_words=["Human"]
+        model_name_or_path  = model_uri,
+        api_key             = model_api_key,
+        max_length          = 256,
+        stop_words          = ["Human"],
+        model_kwargs        = {}
     )
 
-    summary_memory = ConversationSummaryMemory(prompt_node)
-
-    return ConversationalAgent(prompt_node=prompt_node, memory=memory)
+    summary_memory  = ConversationSummaryMemory(prompt_node)
+    #full_memory     = ConversationMemory(prompt_node)
+    
+    return ConversationalAgent(prompt_node=prompt_node, memory=summary_memory)
