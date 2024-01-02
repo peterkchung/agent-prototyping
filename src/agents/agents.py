@@ -27,7 +27,7 @@ from haystack.nodes import PromptNode
 from haystack.agents.memory import ConversationSummaryMemory
 from haystack.agents.conversational import ConversationalAgent
 
-def Agent(model_uri, model_api_key, **model_kwargs):
+def call_agent(model_uri, model_api_key, **model_kwargs):
 
     prompt_node = PromptNode(
         model_name_or_path  = model_uri,
